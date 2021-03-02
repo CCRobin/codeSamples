@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class codeSamples {
 
@@ -11,44 +12,38 @@ public class codeSamples {
         System.out.println("Test 2: " + testResult(printArray(removeDuplicates (new int[]{2,2,1,3,9,3,4,5,8}, 2)), "[2,2,1,3,9,3,4,5,8]"));
         //Test 3
         System.out.println("Test 3: " + testResult(printArray(removeDuplicates (new int[]{2}, 4)), "[2]"));
-        
+        System.out.println();        
     }
 
     //Code Sample 1
     public static int[] removeDuplicates (int [] data, int n){
-		int start = 0;
-		int count = 1;
-		int removalTotal = 0;
-		ArrayList<Integer> numberRemoval = new ArrayList<Integer>();
-		
-		for (int i = 0; i < data.length; i++){
-			start = data[i];
-			for(int j=i+1; j < data.length; j++){
-				if (start == data[j]){
-					count ++;
-				}
-			}
+        Map<Integer, Integer> duplicates = new HashMap<>(data.length); //keep track of duplicate count for each number
+        int removalTotal = 0; //keep track of how many numbers to remove
+		int currentNumber = 0;
 
-			if(count > n & !numberRemoval.contains(start)){
-				//mark element for removal
-				numberRemoval.add(start);
-				removalTotal += count;
-			}
-			
-			//reset
-			count = 1;
-		}
-		
-		//remove duplicates
-		int[] result = new int[data.length - removalTotal];
-		int index = 0;
-		for(int i = 0; i< data.length; i++){
-			if(!numberRemoval.contains(data[i])){
-				result[index] = data[i];
-				index++;
-			}
-		}
-		
+        for(int i = 0; i < data.length; i++){
+            currentNumber = data[i];
+            duplicates.put(currentNumber,duplicates.getOrDefault(currentNumber,0) + 1);
+
+            if(duplicates.get(currentNumber) > n + 1){ //only add the current element for removal
+                removalTotal++; 
+            }else if (duplicates.get(currentNumber) > n){  //add all missed removals
+                removalTotal +=duplicates.get(currentNumber);
+            }
+        }
+
+        //remove duplicates that are greater than n
+        int[] result = new int[data.length - removalTotal];
+        int resultIndex = 0;
+
+        for(int i =0; i < data.length; i++){
+            currentNumber = data[i];
+            if(duplicates.get(currentNumber) <= n){
+                result[resultIndex] = currentNumber;
+                resultIndex++;
+            }
+        }
+        
 		return result;
 	}
 
@@ -58,7 +53,13 @@ public class codeSamples {
 		for(int i = 0; i < array.length-1; i++) {
 			result += array[i]+",";
 		}
-        result += array[array.length-1] + "]";
+
+        if (array.length > 0){
+          result += array[array.length-1] + "]"; 
+        }else{
+           result += "]";
+        }
+
         //DEBUG
         //System.out.println(result);
 		return result;
