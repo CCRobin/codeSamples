@@ -26,3 +26,35 @@ Test 3:
 INPUT: removeDuplicates (new int[]{2}, 4)
 
 OUTPUT: [2]
+
+
+CODE SAMPLE 2
+----------------
+PROBLEM:
+Write a function maxOutput (data) which takes a list of integers and finds the max product of some non-empty subset of those numbers
+The function will return a string representation of the computed max product number
+Note that 1 and 0 are special cases.
+    
+Tests 1:
+
+INPUT: maxOutput (new int[]{0,-1})
+
+OUTPUT: "0"
+
+Test 2:
+
+INPUT: maxOutput (new int[]{2,2,1,3})
+
+OUTPUT: "12"
+
+Test 3: 
+
+INPUT: maxOutput (new int[]{-2,2,0,1})
+
+OUTPUT: "2"
+
+Test 4: 
+
+INPUT: maxOutput (new int[]{2,-2,-4,-3})
+
+OUTPUT: "24"
