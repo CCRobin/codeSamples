@@ -31,8 +31,9 @@ OUTPUT: [2]
 CODE SAMPLE 2
 ----------------
 PROBLEM:
-Write a function maxOutput (data) which takes a list of integers and finds the max product of some non-empty subset of those numbers
-The function will return a string representation of the computed max product number
+Given a function maxOutput (data) which takes a list of integers 
+When you calculate the max product of some non-empty subset of those numbers
+Then the function will return a string representation of the computed max product number
 Note that 1 and 0 are special cases.
     
 Tests 1:
@@ -58,3 +59,35 @@ Test 4:
 INPUT: maxOutput (new int[]{2,-2,-4,-3})
 
 OUTPUT: "24"
+
+
+CODE SAMPLE 3
+----------------
+Given a function minimumOperations (String x) which accepts a positive integer as a string
+When you process the integer representation of the string you can perform the following actions: add 1, subtract 1 or divide the integer by 2 (if it is an even number)
+Then the function will return an integer that shows the minimum number of operations needed to end up at the value of 1 
+    
+Tests 1:
+
+INPUT: minimumOperations ("3")
+
+OUTPUT: 2
+
+Tests 2:
+
+INPUT: minimumOperations ("9")
+
+OUTPUT: 4
+
+Test 3:
+
+INPUT: minimumOperations ("20")
+
+OUTPUT: 5
+
+Test 4: 
+
+INPUT: INPUT: minimumOperations ("1000")
+
+OUTPUT: 12
+
