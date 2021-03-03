@@ -56,20 +56,20 @@ public class codeSamples {
 	}
 
     //Code Sample 2
-    public static String maxOutput (int [] xs){
+    public static String maxOutput (int [] data){
 		BigInteger total = BigInteger.ZERO;
-		int waveStabilizer = 0; //value will change to 1 if can't stabilize panels (i.e. odd # of negative panels)
+		int oddNegatives = 0; //value will change to 1 if odd # of negative integers
 		int min = -1001;
-		ArrayList<Integer> negativePanels = new ArrayList<Integer>();
+		ArrayList<Integer> negativeNumbers = new ArrayList<Integer>();
 
-		for(int i=0; i< xs.length; i++){
-			int temp = xs[i];
+		for(int i=0; i< data.length; i++){
+			int temp = data[i];
 			if(temp < 0){
-				//add to sorted negative panel array
+				//add to sorted negative integers
 				if(temp > min){
 					min = temp;
 				}
-				sort(negativePanels, xs[i], min);
+				sort(negativeNumbers, data[i], min);
 			}else{ 
 				if(temp > 0){
 					if(total == BigInteger.ZERO){
@@ -80,40 +80,36 @@ public class codeSamples {
 			}
 		}
 
-		//check if odd number of negative panels to use wave stabilizer
-		if(negativePanels.size() % 2 != 0){ 
-			waveStabilizer = 1;
+		//check if odd number of negative integers
+		if(negativeNumbers.size() % 2 != 0){ 
+			oddNegatives = 1;
 		}
 
-		//take product of negative panels that can be stabilized
-		for(int i = 0; i < negativePanels.size() - waveStabilizer; i++){
-			total = total.multiply(BigInteger.valueOf(negativePanels.get(i)));
+		//take product of negative integers
+		for(int i = 0; i < negativeNumbers.size() - oddNegatives; i++){
+			total = total.multiply(BigInteger.valueOf(negativeNumbers.get(i)));
 		}
 
 		//special cases
-		if(xs.length == 1){
-			total = BigInteger.valueOf(xs[0]);
-		}//else if(total == BigInteger.ZERO && negativePanels.size() == 1){
-			//total = BigInteger.valueOf(negativePanels.get(0));
-		//}  //excluded this line as output of 0 is greater than a negative output
+		if(data.length == 1){
+			total = BigInteger.valueOf(data[0]);
+		}
 		
 		return total + "";
 	}
 	
-	private static void sort(ArrayList<Integer> negativePanels, int newInt, int min) {
+	private static void sort(ArrayList<Integer> negativeNumbers, int newInt, int min) {
 		
 		if(newInt >= min){
-			negativePanels.add(newInt);
+			negativeNumbers.add(newInt);
 		}else{
-			for(int i =0; i < negativePanels.size(); i++){
-				if(newInt < negativePanels.get(i)){
-					negativePanels.add(i, newInt);
+			for(int i =0; i < negativeNumbers.size(); i++){
+				if(newInt < negativeNumbers.get(i)){
+					negativeNumbers.add(i, newInt);
 					break;
 				}
 			}
 		}		
-		
-		//System.out.println("negativeStrings:  " + negativePanels.toString());
 	}
 
     /*Helper method to print resulting int[] array*/
