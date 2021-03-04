@@ -30,6 +30,16 @@ public class codeSamples {
         testResult(2, minimumOperations ("9") + "", "4");
         testResult(3, minimumOperations ("20") + "", "5");
         testResult(4, minimumOperations ("1000") + "", "12");
+
+        //Solution 4, 5 tests
+        System.out.println();
+        System.out.println("Code Sample 4");
+        System.out.println("--------------");
+        testResult(1, fewestGenerations ("1","1"), "0");
+        testResult(2, fewestGenerations ("1","1000") + "", "999");
+        testResult(3, fewestGenerations ("2","3") + "", "2");
+        testResult(4, fewestGenerations ("2","12") + "", "impossible");
+        testResult(5, fewestGenerations ("123000499999","8980800898"), "196");
     }
 
     //Code Sample 1
@@ -160,6 +170,30 @@ public class codeSamples {
 	return (int)(Math.ceil((Math.log(n) / Math.log(2)))) ==  
 	       (int)(Math.floor(((Math.log(n) / Math.log(2))))); 
 	} 
+
+    //Code Sample 4
+    private static String fewestGenerations(String xMax, String yMax) {
+        BigInteger x = new BigInteger(xMax); //desired x count
+        BigInteger y = new BigInteger(yMax); //desired y count
+        BigInteger count = BigInteger.ZERO;
+        
+        while(true){
+            //DEBUG
+            //System.out.println("X: "+ x + " Y: " + y + " Count: " + count);
+            if(x.equals(BigInteger.ONE) || y.equals(BigInteger.ONE)){
+                //x=1 | y=1
+                return "" + x.subtract(y).abs().add(count);
+            }else if(x.equals(BigInteger.ZERO) || y.equals(BigInteger.ZERO)){
+                return "impossible"; 
+            }else if (y.compareTo(x) == 1){
+                count = count.add(y.divide(x));
+                y = y.mod(x);
+            }else{
+                count = count.add(x.divide(y));
+                x = x.mod(y);
+            }
+        }
+    }
 
     /*Helper method to print resulting int[] array*/
     private static String printArray(int[] array) {

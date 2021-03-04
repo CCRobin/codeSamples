@@ -32,7 +32,7 @@ CODE SAMPLE 2
 ----------------
 PROBLEM:
 Given a function maxOutput (data) which takes a list of integers 
-When you calculate the max product of some non-empty subset of those numbers
+When the max product of some non-empty subset of those numbers is calculated
 Then the function will return a string representation of the computed max product number
 Note that 1 and 0 are special cases.
     
@@ -64,7 +64,7 @@ OUTPUT: "24"
 CODE SAMPLE 3
 ----------------
 Given a function minimumOperations (String x) which accepts a positive integer as a string
-When you process the integer representation of the string you can perform the following actions: add 1, subtract 1 or divide the integer by 2 (if it is an even number)
+When the integer representation of the string is processed then the following actions can be performed: add 1, subtract 1 or divide the integer by 2 (if it is an even number)
 Then the function will return an integer that shows the minimum number of operations needed to end up at the value of 1 
     
 Tests 1:
@@ -87,7 +87,46 @@ OUTPUT: 5
 
 Test 4: 
 
-INPUT: INPUT: minimumOperations ("1000")
+INPUT: minimumOperations ("1000")
 
 OUTPUT: 12
 
+
+CODE SAMPLE 4
+----------------
+Given a function fewestGenerations (String xMax, String yMax) which accepts two positive numbers as strings that are no larger than 10^50
+And given two starting numbers x= 1, y = 1
+When x and y are processed only two outcomes can occur: for every 'x' a 'y' is made and for every 'y' a 'x' is made
+Then the function will return the string representation of the number of generations it will take for x = xMax and y = yMax
+And if both x = xMax  and y = yMax can not be achieved the function will return "impossible"
+
+    
+Tests 1:
+
+INPUT: fewestGenerations ("1", "1")
+
+OUTPUT: "0"
+
+Tests 2:
+
+INPUT: fewestGenerations ("1", "1000")
+
+OUTPUT: "999"
+
+Test 3:
+
+INPUT: fewestGenerations ("2", "3")
+
+OUTPUT: "2"
+
+Test 4: 
+
+INPUT: fewestGenerations ("2", "12")
+
+OUTPUT: "impossible"
+
+Test 5: 
+
+INPUT: fewestGenerations ("123000499999","8980800898")
+
+OUTPUT: "196"
